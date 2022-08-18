@@ -16,8 +16,9 @@ namespace Managers.Grid
         private const float CROSS_Z_POS = -0.01f;
         private const float CROSS_SCALE_MULTIPLIER = 0.9f;
         
-        private List<List<Transform>> grid => GridCreator.Instance.Grid;
+        private List<List<GameObject>> grid => GridCreator.Instance.Grid;
         private List<List<SquareState>> gridState;
+        private List<List<GameObject>> crossGrid;
 
         private int columnCount;
         private Vector3 crossScale;
@@ -38,12 +39,19 @@ namespace Managers.Grid
         private void OnNewGridWasBuilt(int columnCount)
         {
             this.columnCount = columnCount;
+
+            CleanupOldCrosses();
             
             InitializeGridState();
 
             SetCrossScale();
         }
 
+        private void CleanupOldCrosses()
+        {
+            CrossPool.Instance.RecycleAllGameObjects();
+        }
+        
         private void SetCrossScale()
         {
             var currentScale = CrossPool.Instance.GetItemScale();

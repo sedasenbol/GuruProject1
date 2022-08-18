@@ -794,13 +794,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3704453879578082376, guid: 963f631fc0af942269d062d4e0200e55, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.5000229
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 963f631fc0af942269d062d4e0200e55, type: 3}
---- !u!224 &3704453880130110357 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6970647229300921464, guid: 963f631fc0af942269d062d4e0200e55, type: 3}
-  m_PrefabInstance: {fileID: 3704453880130110356}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4021563785571351586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -859,7 +858,7 @@ PrefabInstance:
     - target: {fileID: 4021563786465228631, guid: db1dc49df581f4096a112d655717ab05, type: 3}
       propertyPath: bottomLeft
       value: 
-      objectReference: {fileID: 3704453880130110357}
+      objectReference: {fileID: 0}
     - target: {fileID: 4021563786465228631, guid: db1dc49df581f4096a112d655717ab05, type: 3}
       propertyPath: gridSettings
       value: 
@@ -1033,7 +1032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 304709239245872912, guid: 7ce5fab42ef4049adadc60ec38941d57, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000013351
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 304709239245872912, guid: 7ce5fab42ef4049adadc60ec38941d57, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

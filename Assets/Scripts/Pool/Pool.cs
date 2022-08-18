@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using ScriptableObjects;
 using UnityEngine;
@@ -11,7 +12,11 @@ namespace Pool
         
         private Queue<GameObject> itemPoolQueue;
 
-        
+        private void Start()
+        {
+            itemPoolQueue = new Queue<GameObject>();
+        }
+
         public Vector3 GetItemScale()
         {
             return itemPoolQueue.Peek().transform.localScale;
@@ -42,18 +47,29 @@ namespace Pool
         {
             go.transform.SetParent(containerTransform);
             go.SetActive(false);
-            itemPoolQueue.Enqueue(go);
         }
-    
-        public void InitializeItemPoolDict(int size)
+
+        public void RecycleAllGameObjects()
         {
-            itemPoolQueue = new Queue<GameObject>(size);
-            
-            InitializeItemPool(size);
+            foreach (var item in itemPoolQueue)
+            {
+                item.transform.SetParent(containerTransform);
+                item.SetActive(false);
+            }
+        }
+
+        public void ExpandItemPoolDict(int size)
+        {
+            var currentSize = itemPoolQueue.Count;
+
+            ExpandItemPool(Mathf.Max(size - currentSize, 0));
         }
    
-        private void InitializeItemPool(int poolSize)
+        private void ExpandItemPool(int poolSize)
         {
+            
+            Debug.Log(poolSize);
+            
             for (var j = 0; j < poolSize; j++)
             {
                 itemPoolQueue.Enqueue(InstantiateNewItemForThePool());

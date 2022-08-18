@@ -25,16 +25,25 @@ namespace Managers.Grid
         public void HandleGridRebuildRequest()
         {
             if (!CheckColumnCountValidity(out columnCount)) return;
-            
-            SquarePool.Instance.InitializeItemPoolDict(columnCount * columnCount);
-            CrossPool.Instance.InitializeItemPoolDict(columnCount * columnCount);
 
-            //CleanupOldGrid();
+            CleanupOldGrid();
+            ExpandPools();
             SetSquareLength();
             SetSquareScale();
             BuildGrid();
 
             OnNewGridWasBuilt?.Invoke(columnCount);
+        }
+
+        private void ExpandPools()
+        {
+            SquarePool.Instance.ExpandItemPoolDict(columnCount * columnCount);
+            CrossPool.Instance.ExpandItemPoolDict(columnCount * columnCount);
+        }
+
+        private void CleanupOldGrid()
+        {
+            SquarePool.Instance.RecycleAllGameObjects();
         }
 
         private void SetSquareLength()
@@ -67,17 +76,17 @@ namespace Managers.Grid
 
         private void BuildGrid()
         {
-            Grid = new List<List<Transform>>();
+            Grid = new List<List<GameObject>>();
             
             var rowCount = columnCount;
             
             for (var i = 0; i < columnCount; i++)
             {
-                var newRow = new List<Transform>(rowCount);
+                var newRow = new List<GameObject>(rowCount);
 
                 for (var j = 0; j < rowCount; j++)
                 {
-                    newRow.Add(CreateGridItem(GetGridPosition(i, j)));
+                    newRow.Add(CreateGridItem(GetGridPosition(i, j)).gameObject);
                 }
                 
                 Grid.Add(newRow);
@@ -139,7 +148,7 @@ namespace Managers.Grid
             mainCam = null;
         }
 
-        public List<List<Transform>> Grid { get; private set; }
+        public List<List<GameObject>> Grid { get; private set; }
 
         public Vector3 ScreenCenter => screenCenter;
         public float SquareLength { get; private set; }
