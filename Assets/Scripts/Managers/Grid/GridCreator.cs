@@ -5,24 +5,21 @@ using Pool;
 using ScriptableObjects;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Managers
+namespace Managers.Grid
 {
-    public class GridCreator : MonoBehaviour
+    public class GridCreator : Singleton<GridCreator>
     {
+        public static event Action<int> OnNewGridWasBuilt;
         public static event Action OnInvalidXValueWasEntered;
 
-        [SerializeField] private SquarePoolSettingsScriptableObject squarePoolSettings;
         [SerializeField] private GridSettingsScriptableObject gridSettings;
         [SerializeField] private RectTransform bottomPanelRectTransform;
         [SerializeField] private TMP_InputField columnCountInputField;
-    
+
         private Camera mainCam;
-        private List<List<Transform>> grid;
         private int columnCount;
-        private float squareLength;
-        private Vector3 itemScale;
+        private Vector3 squareScale;
         private Vector3 screenCenter;
 
         public void HandleGridRebuildRequest()
@@ -30,18 +27,22 @@ namespace Managers
             if (!CheckColumnCountValidity(out columnCount)) return;
             
             SquarePool.Instance.InitializeItemPoolDict(columnCount * columnCount);
+            CrossPool.Instance.InitializeItemPoolDict(columnCount * columnCount);
 
+            //CleanupOldGrid();
             SetSquareLength();
             SetSquareScale();
             BuildGrid();
+
+            OnNewGridWasBuilt?.Invoke(columnCount);
         }
 
         private void SetSquareLength()
         {
             var corners = new Vector3[4];
             bottomPanelRectTransform.GetWorldCorners(corners);
-            var bottomLeftPos = corners[1];
-            
+            var bottomLeftPos =  mainCam.ScreenToWorldPoint(corners[1]);
+
             var topRightPos = mainCam.ViewportToWorldPoint(Vector3.one);
             topRightPos.z = 0f;
 
@@ -52,7 +53,7 @@ namespace Managers
 
             var rowCount = columnCount;
 
-            squareLength = Mathf.Min(horizontalLength / columnCount, verticalLength / rowCount);   
+            SquareLength = Mathf.Min(horizontalLength / columnCount, verticalLength / rowCount);   
         }
         
         private void SetSquareScale()
@@ -61,12 +62,12 @@ namespace Managers
 
             var currentSquareLength = SquarePool.Instance.GetItemXLength();
 
-            itemScale = currentScale * squareLength / currentSquareLength;
+            squareScale = currentScale * SquareLength / currentSquareLength;
         }
 
         private void BuildGrid()
         {
-            grid = new List<List<Transform>>();
+            Grid = new List<List<Transform>>();
             
             var rowCount = columnCount;
             
@@ -79,7 +80,7 @@ namespace Managers
                     newRow.Add(CreateGridItem(GetGridPosition(i, j)));
                 }
                 
-                grid.Add(newRow);
+                Grid.Add(newRow);
             }
         }
         
@@ -87,7 +88,7 @@ namespace Managers
         {
             var itemTransform = SquarePool.Instance.SpawnFromPool(pos, Quaternion.identity);
 
-            itemTransform.localScale = itemScale;
+            itemTransform.localScale = squareScale;
 
             return itemTransform;
         }
@@ -110,12 +111,12 @@ namespace Managers
             {
                 var leftMiddleItem = axisItemCount / 2 - 1;
 
-                return Vector3.Dot(screenCenter, axis) + (i - leftMiddleItem - 0.5f) * squareLength;
+                return Vector3.Dot(screenCenter, axis) + (i - leftMiddleItem - 0.5f) * SquareLength;
             }
         
             var middleItem = axisItemCount / 2;
 
-            return Vector3.Dot(screenCenter, axis) + (i - middleItem) * squareLength;
+            return Vector3.Dot(screenCenter, axis) + (i - middleItem) * SquareLength;
         }
         
         private bool CheckColumnCountValidity(out int columnCount)
@@ -138,5 +139,9 @@ namespace Managers
             mainCam = null;
         }
 
+        public List<List<Transform>> Grid { get; private set; }
+
+        public Vector3 ScreenCenter => screenCenter;
+        public float SquareLength { get; private set; }
     }
 }

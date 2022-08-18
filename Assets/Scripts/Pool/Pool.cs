@@ -6,7 +6,7 @@ namespace Pool
 {
     public abstract class Pool : MonoBehaviour
     {
-        [SerializeField] private SquarePoolSettingsScriptableObject squarePoolSettings;
+        [SerializeField] private PoolSettingsScriptableObject poolSettings;
         [SerializeField] private Transform containerTransform;
         
         private Queue<GameObject> itemPoolQueue;
@@ -62,7 +62,7 @@ namespace Pool
 
         private GameObject InstantiateNewItemForThePool()
         {
-            var newGO = Instantiate(squarePoolSettings.ItemPrefab, squarePoolSettings.SquareFirstSpawnPos, Quaternion.identity,
+            var newGO = Instantiate(poolSettings.ItemPrefab, poolSettings.FirstSpawnPos, Quaternion.identity,
                 containerTransform).gameObject;
             
             newGO.SetActive(false);

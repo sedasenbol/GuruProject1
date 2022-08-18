@@ -174,6 +174,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: RebuildButton
       objectReference: {fileID: 0}
+    - target: {fileID: 1449303807697578845, guid: 24e70d1de371f48eeb7c20b874954ba8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449303807697578845, guid: 24e70d1de371f48eeb7c20b874954ba8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449303807697578845, guid: 24e70d1de371f48eeb7c20b874954ba8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449303807697578845, guid: 24e70d1de371f48eeb7c20b874954ba8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HandleGridRebuildRequest
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449303807697578845, guid: 24e70d1de371f48eeb7c20b874954ba8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GridCreator, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1449303807697578845, guid: 24e70d1de371f48eeb7c20b874954ba8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24e70d1de371f48eeb7c20b874954ba8, type: 3}
 --- !u!224 &3704453879134157951 stripped
@@ -188,6 +212,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3704453879179223261}
     m_Modifications:
+    - target: {fileID: 1939726733435939706, guid: b229c08d5cf12490e8c5c3bee742ec09, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 27.163391
+      objectReference: {fileID: 0}
     - target: {fileID: 1939726733862067237, guid: b229c08d5cf12490e8c5c3bee742ec09, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -290,9 +318,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3704453879179223261}
     m_Modifications:
+    - target: {fileID: 5263058440483845915, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
+      propertyPath: m_text
+      value: Enter here...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263058440483845915, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263058440483845915, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263058440483845915, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263058440486443530, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.500021
+      objectReference: {fileID: 0}
     - target: {fileID: 5263058441046813601, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
       propertyPath: m_Name
-      value: InputField (TMP)
+      value: ColumnCountInputField (TMP)
       objectReference: {fileID: 0}
     - target: {fileID: 5263058441046813614, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
       propertyPath: m_Pivot.x
@@ -360,11 +408,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5263058441046813614, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.047073364
+      value: 0.047088623
       objectReference: {fileID: 0}
     - target: {fileID: 5263058441046813614, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1
+      value: 0.9999542
       objectReference: {fileID: 0}
     - target: {fileID: 5263058441046813614, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -377,6 +425,22 @@ PrefabInstance:
     - target: {fileID: 5263058441046813614, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263058441046813615, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
+      propertyPath: m_ContentType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263058441046813615, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
+      propertyPath: m_KeyboardType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263058441046813615, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
+      propertyPath: m_CharacterLimit
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263058441046813615, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}
+      propertyPath: m_CharacterValidation
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 645a3638b89c847e58a22f8276e72e35, type: 3}

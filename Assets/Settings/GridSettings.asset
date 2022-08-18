@@ -16,3 +16,4 @@ MonoBehaviour:
   xMinLimit: 2
   horizontalBoardMargin: 0.5
   verticalBoardMargin: 0.5
+  crossTransform: {fileID: 8517491587689870255, guid: 675e185b5d2bc4d8097287795687fd88, type: 3}

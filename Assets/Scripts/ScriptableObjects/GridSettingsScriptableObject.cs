@@ -11,9 +11,12 @@ namespace ScriptableObjects
         [SerializeField] private float horizontalBoardMargin = 2f;
         [SerializeField] private float verticalBoardMargin = 2f;
 
+        [SerializeField] private Transform crossTransform;
+        
         public int XMaxLimit => xMaxLimit;
         public int XMinLimit => xMinLimit;
         public float HorizontalBoardMargin => horizontalBoardMargin;
         public float VerticalBoardMargin => verticalBoardMargin;
+        public Transform CrossTransform => crossTransform;
     }
 }
