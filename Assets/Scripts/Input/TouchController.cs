@@ -29,8 +29,6 @@ namespace Input
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("1");
-
             var screenPosV2 = eventData.pointerCurrentRaycast.screenPosition;
             Vector3 screenPosV3 = screenPosV2;
             screenPosV3.z = mainCam.nearClipPlane;
@@ -40,11 +38,8 @@ namespace Input
             var resultCount = Physics.RaycastNonAlloc(ray, raycastHits, RAY_MAX_DISTANCE, squareLayerMask);
 
             if (resultCount == 0) {return;}
-         
-            Debug.Log(raycastHits[0].collider.gameObject.name);
-
-            GridManager.Instance.HandleChosenSquare(raycastHits[0].transform.parent);
             
+            GridManager.Instance.HandleChosenSquare(raycastHits[0].transform.parent);
         }
     }
 }

@@ -67,9 +67,6 @@ namespace Pool
    
         private void ExpandItemPool(int poolSize)
         {
-            
-            Debug.Log(poolSize);
-            
             for (var j = 0; j < poolSize; j++)
             {
                 itemPoolQueue.Enqueue(InstantiateNewItemForThePool());

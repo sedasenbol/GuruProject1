@@ -146,6 +146,7 @@ namespace Managers.Grid
         private void OnDestroy()
         {
             mainCam = null;
+            Grid = null;
         }
 
         public List<List<GameObject>> Grid { get; private set; }
